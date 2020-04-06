@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<div>welcome to Spring  boot </div>
+#foreach($pojo in $list)
+    <div>$!pojo.nick</div>
+#end
+</body>
+</html>
