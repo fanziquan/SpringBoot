@@ -33,9 +33,9 @@ public class HelloSpringBoot {
     @MyAnnotation(value = "这是第一个Controller啊")
     public String helloSpring(Model model) throws Exception {
         System.out.println("hello spring boot");
-        List<UsercoreUserRegister> list = userRegisterService.selectList(1,10);
+        List<UsercoreUserRegister> list = userRegisterService.selectList(1, 10);
 //        stringRedisTemplate.opsForValue().set("token","12121111");
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
 //        System.out.println(stringRedisTemplate.opsForValue().get("token"));
 
         User user = new User();
@@ -48,42 +48,49 @@ public class HelloSpringBoot {
 
 
     public static void main(String[] args) {
-//        int[] array = {38,65,97,76,13,27,49};
-//        doInsertSort(array);
-//        for (int i = 0; i < array.length; i++) {
-//            System.out.println("排序后的数据为="+array[i]);
-//        }
-
-        System.out.println(initializeNextSession(12));
+        int[] array = {38, 65, 97, 76, 13, 27, 49};
+        doBubbleSort(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
 
     }
 
-    public static long initializeNextSession(long id) {
-        long nextSid;
-        nextSid = (currentElapsedTime() << 24) >>> 8;
-        nextSid =  nextSid | (id <<56);
-        return nextSid;
-    }
-
-    public static long currentElapsedTime() {
-        return System.nanoTime() / 1000000;
-    }
 
     /**
      * 插入排序方法
      */
-    public static void doInsertSort(int[] array){
-         for(int index = 1; index<array.length; index++){
+    public static void doInsertSort(int[] array) {
+        for (int index = 1; index < array.length; index++) {
             int temp = array[index];
-            int leftindex = index-1;
-            while(leftindex>=0 && array[leftindex]>temp){
-                array[leftindex+1] = array[leftindex];
+            int leftindex = index - 1;
+            while (leftindex >= 0 && array[leftindex] > temp) {
+                array[leftindex + 1] = array[leftindex];
                 leftindex--;
             }
-            array[leftindex+1] = temp;
+            array[leftindex + 1] = temp;
+            System.out.println();
             for (int i = 0; i < array.length; i++) {
-                System.out.println("排序后的数据为="+array[i]+"第"+index+"排序");
+                System.out.print(array[i] + " ");
             }
         }
     }
+
+    /**
+     * 冒泡排序方法
+     * @param array
+     */
+    public static void doBubbleSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j + 1] < array[j]) {
+                    int temp;
+                    temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+
 }
